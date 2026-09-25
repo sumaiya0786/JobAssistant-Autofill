@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* -------------------------------------------------- */
+    /* JOBASSIST DARK THEME */
+    /* -------------------------------------------------- */
+
+    --background: 213 43% 7%;
+    --foreground: 210 40% 96%;
+
+    --card: 211 42% 10%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 211 42% 10%;
+    --popover-foreground: 210 40% 96%;
+
+    /* Emerald / cyan primary */
+    --primary: 158 84% 45%;
+    --primary-foreground: 213 43% 7%;
+
+    /* Secondary dark surface */
+    --secondary: 213 32% 15%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 213 30% 14%;
+    --muted-foreground: 215 20% 60%;
+
+    --accent: 190 80% 45%;
+    --accent-foreground: 210 40% 96%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders */
+    --border: 214 28% 19%;
+    --input: 214 28% 19%;
+    --ring: 158 84% 45%;
+
+    --radius: 0.75rem;
+
+    /* Charts */
+    --chart-1: 158 84% 45%;
+    --chart-2: 190 80% 50%;
+    --chart-3: 262 83% 65%;
+    --chart-4: 28 95% 55%;
+    --chart-5: 210 80% 60%;
+  }
+}
+
+/* -------------------------------------------------- */
+/* GLOBAL */
+/* -------------------------------------------------- */
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  background: hsl(var(--background));
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(
+      circle at 15% 0%,
+      rgba(16, 185, 129, 0.06),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(6, 182, 212, 0.05),
+      transparent 25%
+    ),
+    hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* -------------------------------------------------- */
+/* HEADINGS */
+/* -------------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-display {
+  font-family: 'Outfit', system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* -------------------------------------------------- */
+/* SELECTION */
+/* -------------------------------------------------- */
+
+::selection {
+  background: hsl(var(--primary));
+  color: #06101a;
+}
+
+/* -------------------------------------------------- */
+/* INPUTS */
+/* -------------------------------------------------- */
+
+input,
+textarea,
+select {
+  color-scheme: dark;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: hsl(var(--muted-foreground));
+}
+
+/* -------------------------------------------------- */
+/* SCROLLBAR */
+/* -------------------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* -------------------------------------------------- */
+/* SMOOTH TRANSITIONS */
+/* -------------------------------------------------- */
+
+button,
+a,
+input,
+textarea,
+select {
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+/* -------------------------------------------------- */
+/* REDUCE MOTION */
+/* -------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

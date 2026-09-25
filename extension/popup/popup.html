@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <link rel="stylesheet" href="popup.css" />
+
+  <title>JobAssist</title>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">
+      <div class="mark">
+        <svg
+          width="17"
+          height="17"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M12 3l1.9 5.8L20 10l-6.1 1.2L12 17l-1.9-5.8L4 10l6.1-1.2z"/>
+        </svg>
+      </div>
+
+      <div class="brand-copy">
+        <div class="title">JobAssist</div>
+        <div class="subtitle">AI Job Application Assistant</div>
+      </div>
+    </div>
+
+    <div class="header-status">
+      <span class="status-dot"></span>
+      <span>AI Ready</span>
+    </div>
+  </div>
+
+
+  <!-- MAIN CONTENT -->
+  <main class="content" id="content">
+    <div class="loading-state">
+      <div class="loading-spinner"></div>
+      <div class="section-title">Loading…</div>
+    </div>
+  </main>
+
+
+  <!-- LOGIN TEMPLATE -->
+  <template id="tpl-login">
+
+    <div class="welcome-block">
+      <div class="eyebrow">
+        <span class="eyebrow-line"></span>
+        JOBASSIST
+      </div>
+
+      <div
+        class="section-title"
+        id="onboard-title"
+      >
+        Welcome — sign in to get started
+      </div>
+
+      <div class="welcome-text">
+        Connect your JobAssist account to autofill
+        supported job applications directly from your browser.
+      </div>
+    </div>
+
+    <div class="msg" id="msg"></div>
+
+
+    <div class="login-card">
+
+      <div class="field">
+        <label for="backend">Backend URL</label>
+
+        <div class="input-wrap">
+          <span class="input-icon">⌁</span>
+
+          <input
+            id="backend"
+            type="text"
+            placeholder="https://your-backend-url.com"
+            autocomplete="url"
+          />
+        </div>
+
+        <div class="hint">
+          Paste the backend URL from your JobAssist dashboard → Extension page.
+        </div>
+      </div>
+
+
+      <div class="field">
+        <label for="email">Email</label>
+
+        <div class="input-wrap">
+          <span class="input-icon">@</span>
+
+          <input
+            id="email"
+            type="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+          />
+        </div>
+      </div>
+
+
+      <div class="field">
+        <label for="password">Password</label>
+
+        <div class="input-wrap">
+          <span class="input-icon">••</span>
+
+          <input
+            id="password"
+            type="password"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+          />
+        </div>
+      </div>
+
+
+      <button
+        class="btn primary"
+        id="login-btn"
+        type="button"
+      >
+        <span>Sign in</span>
+        <span class="btn-arrow">→</span>
+      </button>
+
+    </div>
+
+
+    <div class="login-footer">
+      No account?
+      <span>Open the dashboard to register, then sign in here.</span>
+    </div>
+
+  </template>
+
+
+  <!-- DASHBOARD TEMPLATE -->
+  <template id="tpl-dashboard">
+
+    <!-- USER -->
+    <div class="user">
+
+      <div class="user-main">
+
+        <div class="user-avatar">
+          <span id="user-avatar-letter">U</span>
+        </div>
+
+        <div>
+          <div class="name" id="u-name">
+            User
+          </div>
+
+          <div class="email" id="u-email"></div>
+        </div>
+
+      </div>
+
+      <button
+        class="link"
+        id="logout"
+        type="button"
+      >
+        Sign out
+      </button>
+
+    </div>
+
+
+    <!-- PROFILE COMPLETION -->
+    <div class="card profile-card">
+
+      <div class="row">
+
+        <div class="card-label">
+          <span class="mini-icon">✦</span>
+          <h3>Profile completion</h3>
+        </div>
+
+        <span
+          id="completion-pct"
+          class="completion-value"
+        >
+          0%
+        </span>
+
+      </div>
+
+
+      <div class="progress">
+
+        <span
+          id="completion-bar"
+          style="width:0%"
+        ></span>
+
+      </div>
+
+
+      <div class="progress-meta">
+        <span>Profile strength</span>
+        <span>Ready for applications</span>
+      </div>
+
+    </div>
+
+
+    <!-- RESUME -->
+    <div class="card resume-card">
+
+      <div class="row">
+
+        <div class="card-label">
+          <span class="mini-icon resume-icon">▣</span>
+          <h3>Resume</h3>
+        </div>
+
+        <span
+          class="badge"
+          id="resume-badge"
+        >
+          …
+        </span>
+
+      </div>
+
+      <div class="resume-description">
+        Your resume is used to personalize supported application fields.
+      </div>
+
+    </div>
+
+
+    <!-- APPLY -->
+    <div class="card application-card">
+
+      <div class="application-heading">
+
+        <div class="application-icon">
+          ✦
+        </div>
+
+        <div>
+          <div class="application-title">
+            Apply with JobAssist
+          </div>
+
+          <div class="application-subtitle">
+            Open a job application and autofill available fields.
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="application-url">
+          Application URL
+        </label>
+
+        <div class="input-wrap">
+
+          <span class="input-icon">↗</span>
+
+          <input
+            id="application-url"
+            type="url"
+            placeholder="Paste application link..."
+            autocomplete="off"
+          />
+
+        </div>
+
+        <div class="hint">
+          JobAssist fills available fields for you.
+          You review everything and submit it yourself.
+        </div>
+
+      </div>
+
+
+      <button
+        class="btn primary application-btn"
+        id="open-application"
+        type="button"
+      >
+        <span>Open &amp; Autofill</span>
+        <span class="btn-arrow">→</span>
+      </button>
+
+
+      <div
+        class="msg"
+        id="application-msg"
+      ></div>
+
+    </div>
+
+
+    <!-- QUICK ACTIONS -->
+    <div class="quick-section">
+
+      <div class="section-heading-row">
+
+        <div class="section-title">
+          Quick actions
+        </div>
+
+        <div class="section-caption">
+          Workspace
+        </div>
+
+      </div>
+
+
+      <div class="quick-grid">
+
+        <button
+          class="quick-action"
+          id="qa-profile"
+          type="button"
+        >
+          <span class="quick-icon">◉</span>
+
+          <span class="quick-copy">
+            <strong>Edit Profile</strong>
+            <small>Personal information</small>
+          </span>
+
+          <span class="quick-arrow">→</span>
+        </button>
+
+
+        <button
+          class="quick-action"
+          id="qa-resume"
+          type="button"
+        >
+          <span class="quick-icon">▣</span>
+
+          <span class="quick-copy">
+            <strong>Manage Resume</strong>
+            <small>Upload &amp; manage</small>
+          </span>
+
+          <span class="quick-arrow">→</span>
+        </button>
+
+
+        <button
+          class="quick-action"
+          id="qa-analyze"
+          type="button"
+        >
+          <span class="quick-icon">✦</span>
+
+          <span class="quick-copy">
+            <strong>Analyze Job</strong>
+            <small>Match your profile</small>
+          </span>
+
+          <span class="quick-arrow">→</span>
+        </button>
+
+
+        <button
+          class="quick-action"
+          id="qa-apps"
+          type="button"
+        >
+          <span class="quick-icon">◷</span>
+
+          <span class="quick-copy">
+            <strong>Application History</strong>
+            <small>Track applications</small>
+          </span>
+
+          <span class="quick-arrow">→</span>
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="bottom-note">
+      <span class="bottom-note-icon">✓</span>
+      <span>
+        Review every field before submitting your application.
+      </span>
+    </div>
+
+  </template>
+
+
+  <script src="../utils/storage.js"></script>
+  <script src="../services/api.js"></script>
+  <script src="popup.js"></script>
+
+</body>
+</html>

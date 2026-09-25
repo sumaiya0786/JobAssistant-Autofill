@@ -1,0 +1,94 @@
+/* JobAssist floating assistant — scoped with .ja- prefixes to avoid clashing with host pages. */
+#ja-root, #ja-root * { box-sizing: border-box; }
+#ja-root {
+  position: fixed;
+  z-index: 2147483000;
+  bottom: 20px;
+  right: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #0A0A0A;
+}
+
+.ja-launcher {
+  display: flex; align-items: center; gap: 8px;
+  background: #143525; color: #fff;
+  border: none; border-radius: 999px;
+  padding: 12px 18px; cursor: pointer;
+  box-shadow: 0 8px 24px rgba(20,53,37,0.28);
+  font-size: 14px; font-weight: 600;
+  transition: transform .18s ease, background-color .18s ease;
+}
+.ja-launcher:hover { background: #1E4C35; transform: translateY(-2px); }
+.ja-launcher .ja-dot { width: 8px; height: 8px; border-radius: 50%; background: #22C55E; box-shadow: 0 0 0 3px rgba(34,197,94,.25); }
+
+.ja-panel {
+  width: 360px; max-height: 78vh; overflow: hidden;
+  background: #fff; border: 1px solid #E2E8F0; border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.18);
+  display: none; flex-direction: column;
+}
+.ja-panel.ja-open { display: flex; }
+
+.ja-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 16px; background: #143525; color: #fff;
+}
+.ja-header .ja-brand { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
+.ja-header .ja-mark { width: 22px; height: 22px; border-radius: 6px; background: rgba(255,255,255,.15); display:flex; align-items:center; justify-content:center; font-size: 13px; }
+.ja-close { background: transparent; border: none; color: rgba(255,255,255,.8); cursor: pointer; font-size: 20px; line-height: 1; }
+.ja-close:hover { color: #fff; }
+
+.ja-body { padding: 16px; overflow-y: auto; }
+
+.ja-status {
+  display: flex; align-items: center; gap: 8px;
+  background: #E6F0E9; color: #143525;
+  border-radius: 10px; padding: 10px 12px; font-size: 13px; font-weight: 500; margin-bottom: 14px;
+}
+.ja-count { font-weight: 700; }
+
+.ja-actions { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.ja-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  border-radius: 10px; padding: 11px 14px; font-size: 14px; font-weight: 600;
+  cursor: pointer; border: 1px solid #E2E8F0; background: #fff; color: #143525;
+  transition: background-color .15s ease, transform .1s ease;
+}
+.ja-btn:hover { background: #F1F5F2; }
+.ja-btn:active { transform: scale(.99); }
+.ja-btn.ja-primary { background: #143525; color: #fff; border-color: #143525; }
+.ja-btn.ja-primary:hover { background: #1E4C35; }
+.ja-btn:disabled { opacity: .6; cursor: default; }
+
+.ja-section-title { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: #4A524D; margin: 16px 0 8px; }
+
+.ja-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.ja-item { display: flex; align-items: center; gap: 8px; font-size: 13px; padding: 7px 10px; border-radius: 8px; background: #F7F7F5; }
+.ja-item .ja-ico { width: 16px; text-align: center; }
+.ja-item .ja-k { font-weight: 600; }
+.ja-item .ja-v { color: #4A524D; margin-left: auto; max-width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ja-item.ja-warn { background: #FEF3E2; }
+
+.ja-resolve { display: flex; flex-direction: column; gap: 6px; padding: 8px 10px; border-radius: 8px; background: #FEF3E2; }
+.ja-resolve .ja-q { font-size: 13px; font-weight: 600; }
+.ja-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.ja-chip { font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1px solid #E2E8F0; background: #fff; cursor: pointer; }
+.ja-chip:hover { background: #143525; color: #fff; border-color: #143525; }
+
+.ja-note { font-size: 12px; color: #4A524D; margin-top: 14px; line-height: 1.5; padding: 10px; background: #F7F7F5; border-radius: 8px; }
+.ja-note strong { color: #F2542D; }
+
+.ja-empty { text-align: center; color: #4A524D; font-size: 13px; padding: 24px 8px; }
+
+.ja-score { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+.ja-ring { position: relative; width: 78px; height: 78px; }
+.ja-ring .ja-num { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; }
+.ja-reco { font-size: 13px; font-weight: 600; color: #143525; }
+
+.ja-spinner { width: 16px; height: 16px; border: 2px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%; animation: ja-spin .7s linear infinite; }
+.ja-btn:not(.ja-primary) .ja-spinner { border-color: rgba(20,53,37,.3); border-top-color: #143525; }
+@keyframes ja-spin { to { transform: rotate(360deg); } }
+
+/* highlights on host page fields */
+.ja-filled { outline: 2px solid #22C55E !important; outline-offset: 1px !important; transition: outline-color .3s ease; }
+.ja-attention { outline: 2px dashed #F59E0B !important; outline-offset: 1px !important; }

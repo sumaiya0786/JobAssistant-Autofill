@@ -1,0 +1,10 @@
+// Background service worker (MV3). Handles install onboarding.
+chrome.runtime.onInstalled.addListener((details) => {
+  if (details.reason === "install") {
+    chrome.storage.local.get("onboarded", ({ onboarded }) => {
+      if (!onboarded) {
+        chrome.storage.local.set({ onboarded: true });
+      }
+    });
+  }
+});

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JobAssist — Demo Application Forms</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #F7F7F5; color: #0A0A0A; margin: 0; padding: 40px 20px; }
+    .wrap { max-width: 640px; margin: 0 auto; }
+    h1 { font-size: 26px; }
+    p.lead { color: #4A524D; }
+    form { background: #fff; border: 1px solid #E2E8F0; border-radius: 12px; padding: 24px; margin: 20px 0; }
+    form h2 { margin-top: 0; font-size: 18px; }
+    label { display: block; font-size: 13px; font-weight: 600; margin: 14px 0 6px; }
+    input, select, textarea { width: 100%; padding: 10px 12px; border: 1px solid #E2E8F0; border-radius: 8px; font-size: 14px; }
+    button[type=submit] { margin-top: 18px; background: #143525; color: #fff; border: none; padding: 11px 18px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+    .note { font-size: 12px; color: #4A524D; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Demo Application Forms</h1>
+    <p class="lead">Install JobAssist, sign in via the popup, then click the floating <strong>JobAssist</strong> button and hit <strong>Autofill Form</strong>. These three forms use different field structures to test smart mapping.</p>
+
+    <!-- Form A: simple -->
+    <form onsubmit="alert('This is a demo — nothing is submitted.');return false;">
+      <h2>Form A — Simple</h2>
+      <label>Name</label>
+      <input name="name" placeholder="Your name" />
+      <label>Email</label>
+      <input name="email" type="email" placeholder="Email" />
+      <label>Phone</label>
+      <input name="phone" type="tel" placeholder="Phone" />
+      <button type="submit">Submit Application</button>
+    </form>
+
+    <!-- Form B: split name + labelled -->
+    <form onsubmit="alert('This is a demo — nothing is submitted.');return false;">
+      <h2>Form B — Split fields</h2>
+      <label for="fn">First Name</label>
+      <input id="fn" name="first_name" />
+      <label for="ln">Last Name</label>
+      <input id="ln" name="last_name" />
+      <label for="em2">Email Address</label>
+      <input id="em2" name="applicant_email" type="email" />
+      <label for="mob">Mobile</label>
+      <input id="mob" name="mobile" />
+      <button type="submit">Apply</button>
+    </form>
+
+    <!-- Form C: ambiguous + education + sensitive -->
+    <form onsubmit="alert('This is a demo — nothing is submitted.');return false;">
+      <h2>Form C — Ambiguous & rich</h2>
+      <label>Full Name</label>
+      <input placeholder="Full Name" />
+      <label>Professional Email</label>
+      <input type="email" />
+      <label>Contact Number</label>
+      <input type="tel" />
+      <label>LinkedIn Profile</label>
+      <input placeholder="LinkedIn URL" />
+      <label>Please enter your professional profile URL</label>
+      <input placeholder="Profile URL (ambiguous)" />
+      <label>University</label>
+      <input />
+      <label>CGPA / GPA</label>
+      <input />
+      <label>Years of Experience</label>
+      <input />
+      <label>Are you authorized to work / need sponsorship?</label>
+      <input placeholder="Work authorization (sensitive)" />
+      <label>Cover Letter</label>
+      <textarea rows="3"></textarea>
+      <button type="submit">Submit Final Application</button>
+    </form>
+
+    <p class="note">JobAssist never clicks these submit buttons. You always submit manually.</p>
+  </div>
+</body>
+</html>

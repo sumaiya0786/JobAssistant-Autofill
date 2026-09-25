@@ -1,0 +1,94 @@
+{
+  "project": "AI Job Application Assistant",
+  "theme_strategy": "Light mode prioritized. Archetype: Fusion of Swiss Brutalist (Clarity/Authority) & Organic Earthy (Trust/Growth). Avoids generic 'SaaS Blue' to provide a grounded, highly professional, and reassuring experience for job seekers.",
+  "colors": {
+    "background": "#F7F7F5",
+    "surface": "#FFFFFF",
+    "primary": "#143525",
+    "primary_hover": "#1E4C35",
+    "secondary": "#E6F0E9",
+    "text_primary": "#0A0A0A",
+    "text_secondary": "#4A524D",
+    "accent_success": "#22C55E",
+    "accent_warning": "#F59E0B",
+    "accent_danger": "#F2542D",
+    "border": "#E2E8F0"
+  },
+  "typography": {
+    "headings": {
+      "font_family": "Outfit, sans-serif",
+      "weight": "font-medium to font-bold",
+      "tracking": "tracking-tight",
+      "rules": "Never use Inter for headings. Keep jump between heading and subheading within 2 Tailwind steps. H1 max size text-4xl to text-5xl."
+    },
+    "body": {
+      "font_family": "IBM Plex Sans, sans-serif",
+      "weight": "font-normal",
+      "tracking": "tracking-normal",
+      "rules": "Use for all dense data, tables, and form inputs. High legibility required."
+    }
+  },
+  "spacing_and_layout": {
+    "philosophy": "Generous Spacing Philosophy: Use 2-3x more spacing than typical designs. Use p-6, p-8, or p-12.",
+    "dashboard_grid": "High Density Grid (grid-cols-1 md:grid-cols-3 lg:grid-cols-4). Tight gaps (gap-4 or gap-6). Ensure all pixels are utilized.",
+    "bento_grid": "For the overview screen. Use varied spans (col-span-2 row-span-2 for primary charts, col-span-1 for summary metrics).",
+    "alignment": "Left-align paragraphs, inputs, and dense content. Center only if it improves visual rhythm.",
+    "surfaces": "Grid Borders (Technical Look). Use border-collapse style layout for tables. Flat solid backgrounds for health/finance/job data, avoid glassmorphism for data clarity. 1px border with subtle shadow for cards."
+  },
+  "components_instructions": {
+    "general": "Rely on Shadcn UI components heavily but strip the default Vercel-look. Apply custom flat/crisp styling.",
+    "navigation": "Visible navigation bar with logo, 3-5 links, and primary CTA. Sticky header must have solid background (bg-white) and z-50. NO transparent backgrounds over content.",
+    "cards": "Go cardless or flat rectangular. 1px border (border-border), flat background, no shadow by default. Hover adds slight lift (-translate-y-1) and subtle shadow.",
+    "forms": "Use Shadcn Input, Select, Form, Checkbox. Left-aligned labels. Use generous padding inside inputs.",
+    "tables": "Shadcn Table. Use high contrast for text. Status badges should be pill-shaped with subtle background tints.",
+    "charts": "Use Recharts or Shadcn Chart components for dashboard analytics. Ensure color-blind-friendly palettes.",
+    "toasts": "Use sonner for success/error notifications."
+  },
+  "interactive_motion": {
+    "hover_states": "Explicitly set text color on hover (e.g., hover:bg-slate-900 hover:text-white). Button hover states should be a lighter hue of the active state color.",
+    "focus_states": "Must have higher contrast (focus:ring-2 focus:ring-primary).",
+    "transitions": "Use specific properties (transition-colors, transition-transform duration-200 ease-out). DO NOT use transition-all."
+  },
+  "accessibility": {
+    "contrast": "Minimum 4.5:1 for normal text, 3:1 for large text. When placing text over images/gradients, use text shadow or semi-solid overlays to meet ratios.",
+    "motion": "Respect prefers-reduced-motion."
+  },
+  "testing_guidelines": {
+    "data_testid": "All interactive and key informational elements MUST include a data-testid attribute in kebab-case, role-based. Example: data-testid='login-submit-button', data-testid='job-match-score-card'."
+  },
+  "image_urls": {
+    "auth_background": {
+      "url": "https://images.unsplash.com/photo-1601662528567-526cd06f6582?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1MDZ8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMHN1YnRsZSUyMHRleHR1cmUlMjBwYXBlcnxlbnwwfHx8fDE3ODc2ODM4MjB8MA&ixlib=rb-4.1.0&q=85",
+      "description": "White textured paper background for the login/register split screen. Adds organic warmth.",
+      "category": "backgrounds"
+    },
+    "user_avatar": {
+      "url": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTB8MHwxfHNlYXJjaHwzfHxwcm9mZXNzaW9uYWwlMjBoZWFkc2hvdCUyMHBvcnRyYWl0fGVufDB8fHx8MTc4NzYxMzIzNHww&ixlib=rb-4.1.0&q=85",
+      "description": "Professional female headshot for user profile mockup.",
+      "category": "avatars"
+    },
+    "user_avatar_alt": {
+      "url": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTB8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBoZWFkc2hvdCUyMHBvcnRyYWl0fGVufDB8fHx8MTc4NzYxMzIzNHww&ixlib=rb-4.1.0&q=85",
+      "description": "Professional male headshot for alternate profile mockup.",
+      "category": "avatars"
+    }
+  },
+  "universal_guidelines_for_main_agent": [
+    "You tend to converge toward generic, 'on distribution' outputs. Avoid the 'AI slop' aesthetic. Create depth and distinctiveness.",
+    "Do not use dark colors as gradients.",
+    "Do not make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "DO NOT apply universal transitions (e.g., transition: all).",
+    "DO NOT center align the app container (.App { text-align: center; }).",
+    "Always use modern button styles (pill-shaped or crisp sharp edges) with interaction animations.",
+    "NEVER use AI assistant emoji characters for icons. Use lucide-react.",
+    "Use 2-3x more spacing than feels comfortable.",
+    "Provide empty, loading, and error states using abstract geometric patterns or clean typography instead of generic illustrations.",
+    "NEVER use placeholder text or generic urls for images. Use the exact URLs provided in this guideline."
+  ],
+  "chrome_extension_guidelines": {
+    "tech": "Manifest V3, Vanilla JS. NO React in the extension.",
+    "ui_style": "Match the dashboard style but scaled down. Use standard system fonts for the extension if custom fonts are too heavy to load, but stick to the color palette.",
+    "components": "Minimalist form auto-fill popups, clean success toasts, and clear matching percentage ring graphs."
+  }
+}
