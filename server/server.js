@@ -31,7 +31,9 @@ const PORT = process.env.NODE_PORT || 5001;
 
 connectDB()
   .then(() => {
-    app.listen(PORT, "127.0.0.1", () => console.log(`[server] Node backend listening on 127.0.0.1:${PORT}`));
+   app.listen(PORT, "0.0.0.0", () => {
+  console.log(`[server] Node backend listening on port ${PORT}`);
+});
   })
   .catch((err) => {
     console.error("[server] failed to start:", err.message);
